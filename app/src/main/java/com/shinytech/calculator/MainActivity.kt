@@ -49,10 +49,9 @@ class MainActivity : ComponentActivity() {
                 {
                     Column(
                         modifier = Modifier
-                            .safeDrawingPadding()
                             .fillMaxWidth()
                             .align(Alignment.BottomCenter),
-                        verticalArrangement = Arrangement.spacedBy(0.2.dp)
+                        verticalArrangement = Arrangement.spacedBy(1.dp)
                     ) {
                         Text(
                             text =textToDisplay.value,
