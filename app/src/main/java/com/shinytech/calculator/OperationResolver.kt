@@ -8,16 +8,16 @@ class OperationResolver(
 
     fun resolve(): String {
         var result = ""
-         try {
-             if (numberTwo=="0" && operationSign=="÷"){
-                 return "M'enfin ?!"
-             }
+        try {
+            if (numberTwo == "0" && operationSign == "÷") {
+                return "M'enfin ?!"
+            }
             val num1 = numberOne.toDouble()
             val num2 = numberTwo.toDouble()
             result = performOperation(num1, num2).toString()
-            if (result.endsWith((".0"))){
+            if (result.endsWith((".0"))) {
                 result = result.substring(
-                    0, result.length-2
+                    0, result.length - 2
                 )
             }
         } catch (e: NumberFormatException) {

@@ -25,8 +25,7 @@ class CalculatorViewModel : ViewModel() {
             } else {
                 _numberDisplayed.value += symbol
             }
-        }
-        catch (e: NumberFormatException) {
+        } catch (e: NumberFormatException) {
             _numberDisplayed.value = ""
         }
     }
@@ -41,21 +40,21 @@ class CalculatorViewModel : ViewModel() {
         var operation = ""
 
 
-            for (c in _numberDisplayed.value) {
+        for (c in _numberDisplayed.value) {
 
-                if (operationList.contains(c.toString()) && numberOne != "" && numberTwo != "") {
-                    numberOne = OperationResolver(numberOne, numberTwo, operation).resolve()
-                    numberTwo = ""
-                }
-                if (operationList.contains(c.toString())) {
-                    operation = c.toString()
-                } else if ("" == operation) {
-                    numberOne += c
-                } else {
-                    numberTwo += c
-                }
-
+            if (operationList.contains(c.toString()) && numberOne != "" && numberTwo != "") {
+                numberOne = OperationResolver(numberOne, numberTwo, operation).resolve()
+                numberTwo = ""
             }
+            if (operationList.contains(c.toString())) {
+                operation = c.toString()
+            } else if ("" == operation) {
+                numberOne += c
+            } else {
+                numberTwo += c
+            }
+
+        }
 
         return OperationResolver(numberOne, numberTwo, operation).resolve()
     }

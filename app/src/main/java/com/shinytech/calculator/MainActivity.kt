@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -56,14 +55,14 @@ class MainActivity : ComponentActivity() {
                         verticalArrangement = Arrangement.spacedBy(1.dp)
                     ) {
                         Text(
-                            text =textToDisplay.value,
+                            text = textToDisplay.value,
                             textAlign = TextAlign.End,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(vertical = 20.dp),
+                                .padding(20.dp),
                             fontWeight = FontWeight.Light,
                             lineHeight = 1.em,
-                            fontSize = 32.sp,
+                            fontSize = 40.sp,
                             color = Color.White,
                             maxLines = 2
                         )
@@ -77,11 +76,13 @@ class MainActivity : ComponentActivity() {
                                 "AC",
                                 Color.Black,
 
-                            )
-                            CalculatorButton(Modifier.weight(2f),
+                                )
+                            CalculatorButton(
+                                Modifier.weight(2f),
                                 Color.LightGray,
                                 "%",
-                                Color.Black)
+                                Color.Black
+                            )
                             CalculatorButton(
                                 Modifier.weight(2f),
                                 Color.LightGray,
@@ -220,12 +221,6 @@ class MainActivity : ComponentActivity() {
 
         }
     }
-
-
-
-
-
-
 
 
 }
