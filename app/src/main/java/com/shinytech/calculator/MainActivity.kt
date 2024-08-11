@@ -1,34 +1,30 @@
 package com.shinytech.calculator
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import com.shinytech.calculator.ui.theme.CalculatorTheme
 
@@ -36,20 +32,19 @@ class MainActivity : ComponentActivity() {
 
     private val viewModel by viewModels<CalculatorViewModel>()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         enableEdgeToEdge()
         setContent {
             CalculatorTheme {
-
                 val textToDisplay = viewModel.numberDisplayed.collectAsState()
-
 
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
                         .background(Color.DarkGray)
-                        .padding(5.dp)
                 )
                 {
                     Column(
@@ -64,23 +59,28 @@ class MainActivity : ComponentActivity() {
                             textAlign = TextAlign.End,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(vertical = 32.dp),
+                                .padding(vertical = 20.dp),
                             fontWeight = FontWeight.Light,
-                            fontSize = 80.sp,
+                            lineHeight = 1.em,
+                            fontSize = 32.sp,
                             color = Color.White,
                             maxLines = 2
                         )
 
                         Row(
-                            horizontalArrangement = Arrangement.spacedBy(1.5.dp)
+                            horizontalArrangement = Arrangement.spacedBy(1.dp)
                         ) {
                             CalculatorButton(
                                 Modifier.weight(2f),
                                 Color.LightGray,
                                 "AC",
-                                Color.Black
+                                Color.Black,
+
                             )
-                            CalculatorButton(Modifier.weight(2f), Color.LightGray, "%", Color.Black)
+                            CalculatorButton(Modifier.weight(2f),
+                                Color.LightGray,
+                                "%",
+                                Color.Black)
                             CalculatorButton(
                                 Modifier.weight(2f),
                                 Color.LightGray,
@@ -223,22 +223,8 @@ class MainActivity : ComponentActivity() {
 
 
 
-    @Composable
-    private fun CalculatorButton(modifier: Modifier, color: Color, symbol: String, symbolColor: Color) {
-        Box(
-            contentAlignment = Alignment.Center, modifier = Modifier
-                .background(color)
-                .aspectRatio(1f)
-                .clickable {
-                    viewModel.updateNumberDisplayed(symbol)
-                }
-                .then(modifier)
-        ) {
-            Text(
-                text = symbol, fontSize = 50.sp, color = symbolColor
-            )
-        }
-    }
+
+
 
 
 }
