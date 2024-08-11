@@ -44,12 +44,14 @@ class MainActivity : ComponentActivity() {
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
+
                         .background(Color.DarkGray)
                 )
                 {
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
+                            .safeDrawingPadding()
                             .align(Alignment.BottomCenter),
                         verticalArrangement = Arrangement.spacedBy(1.dp)
                     ) {
